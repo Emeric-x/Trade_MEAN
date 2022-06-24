@@ -4,6 +4,11 @@ const port = 3000;
 const mongoose = require('./database/mongoose')
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
+const cors = require('cors')
+
+//Import routes
+const gamesRoute = require("./routes/games")
+app.use('/games', gamesRoute)
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
