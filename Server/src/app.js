@@ -6,6 +6,9 @@ const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 const cors = require('cors')
 
+app.use(cors())
+app.use(express.json())
+
 //Import routes
 const gamesRoute = require("./routes/games")
 app.use('/games', gamesRoute)
@@ -30,12 +33,10 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
 }));
 
-app.use(express.json())
-
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     res.send('Hello World!')
-});
+});*/
 
 app.listen(port, () => {
-    console.log(`Server connected on port ${port}!`)
+    console.log(`Server connected on port ${port} !`)
 });
