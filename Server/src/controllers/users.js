@@ -67,7 +67,7 @@ exports.DeleteUser = async(req, res) => {
         } else {
             await User.findByIdAndRemove({ _id: req.params.id })
 
-            res.json({ msg: 'Game deleted' })
+            res.json({ msg: 'user deleted' })
         }
     } catch (err) {
         console.log(err)
