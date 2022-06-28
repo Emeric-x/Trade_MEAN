@@ -12,6 +12,8 @@ app.use(express.json())
 //Import routes
 const gamesRoute = require("./routes/games")
 app.use('/games', gamesRoute)
+const usersRoute = require("./routes/users")
+app.use('/users', usersRoute)
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`

@@ -10,6 +10,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { FourOhFourComponent } from './components/four-oh-four/four-oh-four.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +26,9 @@ const appRoutes: Routes = [
     AppComponent,
     GamesComponent,
     HomeComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

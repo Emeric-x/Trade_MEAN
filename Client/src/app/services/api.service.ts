@@ -11,4 +11,8 @@ export class ApiService {
   GetAllGames() {
     return this.http.get(`http://localhost:3000/games`)
   }
+
+  GetAllUsers() {
+    return this.http.get(`http://localhost:3000/users`)
+  }
 }
