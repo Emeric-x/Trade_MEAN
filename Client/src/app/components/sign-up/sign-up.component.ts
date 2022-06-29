@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { User } from 'src/app/interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,13 +10,23 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private ApiService: ApiService) { }
+  constructor(private ApiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   Signup(sNewUserFirstname: string, sNewUserLastname: string, sNewUserLogin: string, sNewUserPassword: string){
-    //faire une interface pour pouvoir passer un objet user directement a postuser (au lieu de passer le login, le mdp, le nom etc)
-    this.ApiService.PostUser()
+    const newUser: User = {
+      firstname: sNewUserFirstname,
+      lastname: sNewUserLastname,
+      login: sNewUserLogin,
+      password: sNewUserPassword
+    }
+
+    this.ApiService.PostUser(newUser).subscribe(Result => {
+      if(Result){
+        this.router.navigate(['/Games'])
+      }
+    })
   }
 }
