@@ -14,6 +14,8 @@ const gamesRoute = require("./routes/games")
 app.use('/games', gamesRoute)
 const usersRoute = require("./routes/users")
 app.use('/users', usersRoute)
+const countriesRoute = require("./routes/countries")
+app.use('/countries', countriesRoute)
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`

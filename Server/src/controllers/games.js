@@ -15,7 +15,7 @@ exports.PostGame = async(req, res) => {
         const game = new Game(req.body)
         await game.save()
 
-        res.send(game)
+        res.send(true)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
