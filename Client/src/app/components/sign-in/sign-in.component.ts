@@ -18,7 +18,7 @@ export class SignInComponent implements OnInit {
   SignIn(sUserLogin: string, sUserPassword: string){
     this.ApiService.GetAllUsers().subscribe((Result: any) => {
       Result.forEach((User: any) => {
-        if(User.firstname === sUserLogin && User.password === sUserPassword){
+        if(User.login === sUserLogin && User.password === sUserPassword){
           this.AuthService.isAuth = true
           this.router.navigate(['/Games'])
         }

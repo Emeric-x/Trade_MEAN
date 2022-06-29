@@ -16,7 +16,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'Home', component: HomeComponent },
-  { path: 'Signin', component: SignInComponent }, 
+  { path: 'Signin', component: SignInComponent },
+  { path: 'Signup', component: SignUpComponent }, 
   { path: 'Games', canActivate:[AuthGuardService], component: GamesComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: '/not-found' }

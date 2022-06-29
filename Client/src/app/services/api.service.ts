@@ -15,4 +15,8 @@ export class ApiService {
   GetAllUsers() {
     return this.http.get(`http://localhost:3000/users`)
   }
+
+  PostUser(){
+    return this.http.get(`http://localhost:3000/users`)
+  }
 }
