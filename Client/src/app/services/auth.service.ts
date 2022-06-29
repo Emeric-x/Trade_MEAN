@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  isAuth: boolean = true;
-  userData: any; // Save logged in user data
+  isAuth: boolean = false;
+  LoggedUserData: any; // Save logged in user data
 
   constructor() { }
 }

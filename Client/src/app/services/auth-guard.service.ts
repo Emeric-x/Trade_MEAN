@@ -14,7 +14,7 @@ export class AuthGuardService {
     if (this.authService.isAuth) {
         return true;
     }
-    this.router.navigate(['/Home']);
+    this.router.navigate(['/Signin']);
     return false;
   }
 }

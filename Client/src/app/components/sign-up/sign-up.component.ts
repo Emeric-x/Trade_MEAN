@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private ApiService: ApiService, private router: Router) { }
+  constructor(private ApiService: ApiService, private router: Router, private AuthService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,8 @@ export class SignUpComponent implements OnInit {
 
     this.ApiService.PostUser(newUser).subscribe(Result => {
       if(Result){
+        this.AuthService.LoggedUserData = newUser
+        this.AuthService.isAuth = true
         this.router.navigate(['/Games'])
       }
     })

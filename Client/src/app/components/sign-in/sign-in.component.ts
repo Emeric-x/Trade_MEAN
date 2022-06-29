@@ -20,6 +20,7 @@ export class SignInComponent implements OnInit {
       Result.forEach((User: any) => {
         if(User.login === sUserLogin && User.password === sUserPassword){
           this.AuthService.isAuth = true
+          this.AuthService.LoggedUserData = User
           this.router.navigate(['/Games'])
         }
       });
