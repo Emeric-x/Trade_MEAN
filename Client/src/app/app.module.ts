@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { GamesComponent } from './components/games/games.component';
+import { GroupsComponent } from './components/groups/groups.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { FourOhFourComponent } from './components/four-oh-four/four-oh-four.component';
@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: 'Signin', component: SignInComponent },
   { path: 'Signup', component: SignUpComponent }, 
-  { path: 'Games', canActivate:[AuthGuardService], component: GamesComponent },
+  { path: 'Groups', canActivate:[AuthGuardService], component: GroupsComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: '/not-found' }
 ]
@@ -26,7 +26,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    GamesComponent,
+    GroupsComponent,
     HomeComponent,
     FourOhFourComponent,
     SignInComponent,

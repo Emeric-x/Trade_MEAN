@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
       if(Result){
         this.AuthService.LoggedUserData = newUser
         this.AuthService.isAuth = true
-        this.router.navigate(['/Games'])
+        this.router.navigate(['/Groups'])
       }
     })
   }

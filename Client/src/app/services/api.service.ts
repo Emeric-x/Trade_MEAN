@@ -13,6 +13,10 @@ export class ApiService {
     return this.http.get(`http://localhost:3000/games`)
   }
 
+  GetAllCountries() {
+    return this.http.get(`http://localhost:3000/countries`)
+  }
+
   GetAllUsers() {
     return this.http.get(`http://localhost:3000/users`)
   }

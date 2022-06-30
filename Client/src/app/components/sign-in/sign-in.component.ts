@@ -21,7 +21,7 @@ export class SignInComponent implements OnInit {
         if(User.login === sUserLogin && User.password === sUserPassword){
           this.AuthService.isAuth = true
           this.AuthService.LoggedUserData = User
-          this.router.navigate(['/Games'])
+          this.router.navigate(['/Groups'])
         }
       });
     })
