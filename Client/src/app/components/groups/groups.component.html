@@ -1,7 +1,11 @@
-<div>
-    <button type="button" *ngFor="let game of ListGames">{{ game.name }}</button>
+<div *ngIf="!FirstStep && !SecondStep && !ThirdStep">
+    <button type="button" *ngFor="let game of ListGames" (click)="ClickedGame = game; FirstStep = true">{{ game.name }}</button>
 </div>
 
-<div>
-    <button type="button" *ngFor="let country of ListCountries">{{ country.name }}</button>
+<div *ngIf="FirstStep && !SecondStep && !ThirdStep">
+    <button type="button" *ngFor="let country of ListCountries" (click)="SecondStep = true">{{ country.name }}</button>
+</div>
+
+<div *ngIf="FirstStep && SecondStep && !ThirdStep">
+    <button type="button" *ngFor="let GameRanks of ClickedGame?.ranks" (click)="ThirdStep = true">{{ GameRanks.name }}</button>
 </div>

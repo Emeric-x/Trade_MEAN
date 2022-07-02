@@ -21,7 +21,8 @@ export class SignUpComponent implements OnInit {
       firstname: sNewUserFirstname,
       lastname: sNewUserLastname,
       login: sNewUserLogin,
-      password: sNewUserPassword
+      password: sNewUserPassword,
+      avatar: "ok"
     }
 
     this.ApiService.PostUser(newUser).subscribe(Result => {

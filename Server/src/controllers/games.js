@@ -1,4 +1,5 @@
 const Game = require("../models/game")
+const Rank = require("../models/rank")
 
 exports.GetAllGames = async(req, res) => {
     try {
@@ -24,14 +25,17 @@ exports.PostGame = async(req, res) => {
 
 exports.UpdateGame = async(req, res) => {
     try {
-        const { sName, sDescription } = req.body
         let game = await Game.findById(req.params.id)
 
         if (!game) {
             res.status(404).json({ msg: 'No matching game' })
         } else {
-            game.name = sName
-            game.description = sDescription
+            game.name = req.body.name
+            game.description = req.body.description
+            game.logo = req.body.logo
+            req.body.ranks.forEach(rank => {
+                game.ranks.push(rank)
+            });
 
             game = await Game.findOneAndUpdate({ _id: req.params.id }, game, { new: true })
 
