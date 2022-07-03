@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Group } from '../interfaces/group';
 import { User } from '../interfaces/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private AuthService: AuthService) { }
 
   GetAllGames() {
     return this.http.get(`http://localhost:3000/games`)
@@ -44,6 +45,8 @@ export class ApiService {
         logo: sUserGroup.rank?.logo
       }
     }
+
+    this.AuthService.LoggedUserData?.groups?.push(userGroup)
     
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(userGroup);

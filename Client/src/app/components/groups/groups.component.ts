@@ -47,7 +47,11 @@ export class GroupsComponent implements OnInit {
       this.GroupService.CurrentGroup = group
 
       if(SaveData){
-        this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()
+        if(this.GroupService.isGroupExisting(group.country!.name, group.game!.name, group.rank!.name)){
+          alert("You already have this group in your group list.")
+        }else{
+          this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()
+        }
       }
     }
 
