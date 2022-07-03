@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Country } from 'src/app/interfaces/country';
 import { Game } from 'src/app/interfaces/game';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -11,6 +12,7 @@ export class GroupsComponent implements OnInit {
   ListGames: any
   ListCountries: any
   ClickedGame: Game | undefined
+  ClickedCountry: Country | undefined
   FirstStep: boolean = false
   SecondStep: boolean = false
   ThirdStep: boolean = false
