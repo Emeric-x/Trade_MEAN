@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/interfaces/country';
 import { Game } from 'src/app/interfaces/game';
+import { Rank } from 'src/app/interfaces/rank';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -11,11 +12,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class GroupsComponent implements OnInit {
   ListGames: any
   ListCountries: any
-  ClickedGame: Game | undefined
-  ClickedCountry: Country | undefined
-  FirstStep: boolean = false
-  SecondStep: boolean = false
-  ThirdStep: boolean = false
+  ChoosedGame: Game | undefined
+  ChoosedCountry: Country | undefined
+  ChoosedRank: Rank | undefined
 
   constructor(private ApiService: ApiService) { }
 
