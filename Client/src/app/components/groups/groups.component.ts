@@ -23,7 +23,7 @@ export class GroupsComponent implements OnInit {
   constructor(private ApiService: ApiService, 
     private GroupService: GroupService, 
     public router: Router,
-    private AuthService: AuthService) { }
+    public AuthService: AuthService) { }
 
   ngOnInit(): void {
     this.ApiService.GetAllGames().subscribe(Result => {
@@ -35,14 +35,22 @@ export class GroupsComponent implements OnInit {
     })
   }
 
-  SaveGroup(){
-    let group: Group = {
-      country: this.ChoosedCountry,
-      game: this.ChoosedGame,
-      rank: this.ChoosedRank
+  SaveGroup(SaveData: boolean, sGroup: any){
+    if(sGroup !== null){
+      this.GroupService.CurrentGroup = sGroup
+    }else{
+      let group: Group = {
+        country: this.ChoosedCountry,
+        game: this.ChoosedGame,
+        rank: this.ChoosedRank
+      }
+      this.GroupService.CurrentGroup = group
+
+      if(SaveData){
+        this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()
+      }
     }
 
-    this.GroupService.CurrentGroup = group
-    this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()
+    this.router.navigate(['/Room'])
   }
 }

@@ -1,17 +1,25 @@
-<div *ngIf="!ChoosedGame && !ChoosedCountry">
-    <button type="button" *ngFor="let game of ListGames" (click)="ChoosedGame = game">{{ game.name }}</button>
+<div>
+    <h1>Your groups</h1>
+    <button *ngFor="let group of this.AuthService.LoggedUserData?.groups" (click)="SaveGroup(false, group)">{{ group.rank.name }}</button>
 </div>
 
-<div *ngIf="ChoosedGame && !ChoosedCountry">
-    <button type="button" *ngFor="let country of ListCountries" (click)="ChoosedCountry = country">{{ country.name }}</button>
-</div>
+<div>
+    <h1>Create a new group</h1>
+    <div *ngIf="!ChoosedGame && !ChoosedCountry">
+        <button type="button" *ngFor="let game of ListGames" (click)="ChoosedGame = game">{{ game.name }}</button>
+    </div>
 
-<div *ngIf="ChoosedGame && ChoosedCountry">
-    <button type="button" *ngFor="let rank of ChoosedGame.ranks" (click)="ChoosedRank = rank">{{ rank.name }}</button>
-</div>
+    <div *ngIf="ChoosedGame && !ChoosedCountry">
+        <button type="button" *ngFor="let country of ListCountries" (click)="ChoosedCountry = country">{{ country.name }}</button>
+    </div>
 
-<div *ngIf="ChoosedGame && ChoosedCountry && ChoosedRank">
-    <p>Do you want to save this Group ?</p>
-    <button type="button" (click)="SaveGroup(); this.router.navigate(['/Room'])">Yes</button>
-    <button type="button" (click)="this.router.navigate(['/Room'])">No</button>
+    <div *ngIf="ChoosedGame && ChoosedCountry">
+        <button type="button" *ngFor="let rank of ChoosedGame.ranks" (click)="ChoosedRank = rank">{{ rank.name }}</button>
+    </div>
+
+    <div *ngIf="ChoosedGame && ChoosedCountry && ChoosedRank">
+        <p>Do you want to save this Group ?</p>
+        <button type="button" (click)="SaveGroup(true, null)">Yes</button>
+        <button type="button" (click)="SaveGroup(false, null)">No</button>
+    </div>
 </div>
