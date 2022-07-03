@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Group } from 'src/app/interfaces/group';
 import { ApiService } from 'src/app/services/api.service';
 import { GroupService } from 'src/app/services/group.service';
 
@@ -11,7 +13,7 @@ export class GroupsComponent implements OnInit {
   ListGames: any
   ListCountries: any
 
-  constructor(private ApiService: ApiService, public GroupService: GroupService) { }
+  constructor(private ApiService: ApiService, public GroupService: GroupService, public router: Router) { }
 
   ngOnInit(): void {
     this.ApiService.GetAllGames().subscribe(Result => {
@@ -21,5 +23,11 @@ export class GroupsComponent implements OnInit {
     this.ApiService.GetAllCountries().subscribe(Result => {
       this.ListCountries = Result
     })
+  }
+
+  SaveGroup(){
+    let group: Group = {
+      
+    }
   }
 }

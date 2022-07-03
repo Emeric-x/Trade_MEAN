@@ -1,7 +1,17 @@
+import { Country } from "./country"
+import { Game } from "./game"
+import { Rank } from "./rank"
+
 export interface User {
+    id?: string,
     firstname: string,
     lastname: string,
     login: string,
     password: string,
-    avatar: string
+    avatar: string,
+    groups: [{
+        country: Country,
+        game: Game,
+        rank: Rank
+    }]
 }

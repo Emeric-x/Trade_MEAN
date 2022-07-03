@@ -12,6 +12,7 @@ import { FourOhFourComponent } from './components/four-oh-four/four-oh-four.comp
 import { AuthGuardService } from './services/auth-guard.service';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { RoomComponent } from './components/room/room.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'Signin', component: SignInComponent },
   { path: 'Signup', component: SignUpComponent }, 
   { path: 'Groups', canActivate:[AuthGuardService], component: GroupsComponent },
+  { path: 'Room', canActivate:[AuthGuardService], component: RoomComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: '/not-found' }
 ]
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     HomeComponent,
     FourOhFourComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,

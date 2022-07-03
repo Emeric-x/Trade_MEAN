@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const group = require('./group')
 
 const UserSchema = mongoose.Schema({
+    id: { type: mongoose.Types.ObjectId, required: false },
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     login: { type: String, required: true },

@@ -9,3 +9,9 @@
 <div *ngIf="this.GroupService.ChoosedGame && this.GroupService.ChoosedCountry">
     <button type="button" *ngFor="let rank of this.GroupService.ChoosedGame?.ranks" (click)="this.GroupService.ChoosedRank = rank">{{ rank.name }}</button>
 </div>
+
+<div *ngIf="this.GroupService.ChoosedGame && this.GroupService.ChoosedCountry && this.GroupService.ChoosedRank">
+    <p>Do you want to save this Group ?</p>
+    <button type="button" (click)="SaveGroup(); this.router.navigate(['/Room'])">Yes</button>
+    <button type="button" (click)="this.router.navigate(['/Room'])">No</button>
+</div>
