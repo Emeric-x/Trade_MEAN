@@ -1,7 +1,7 @@
 <h1>New account</h1>
-<input type="text" #newUserFirstname required>
-<input type="text" #newUserLastname required>
-<input type="text" #newUserLogin required>
-<input type="password" #newUserPassword required>
+<input type="text" placeholder="firstname" #newUserFirstname required>
+<input type="text" placeholder="lastname" #newUserLastname required>
+<input type="text" placeholder="login" #newUserLogin required>
+<input type="password" placeholder="password" #newUserPassword required>
 
 <button type="button" (click)="Signup(newUserFirstname.value, newUserLastname.value, newUserLogin.value, newUserPassword.value)">Ok</button>

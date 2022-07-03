@@ -9,7 +9,7 @@ export interface User {
     login: string,
     password: string,
     avatar: string,
-    groups: [{
+    groups?: [{
         country: Country,
         game: Game,
         rank: Rank
