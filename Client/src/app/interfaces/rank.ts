@@ -1,5 +1,5 @@
 export interface Rank {
-    id?: string,
+    _id?: string,
     name: string,
     logo: string
 }

@@ -25,14 +25,28 @@ export class ApiService {
   PostUser(sNewUser: User){
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(sNewUser);
-    console.log(body)
     return this.http.post(`http://localhost:3000/users`, body, {'headers':headers})
   }
 
-  PutUserGroup(sUserId: string | undefined, sUserGroup: Group){
+  PutUserGroup(sUserId: string, sUserGroup: Group){
+    let userGroup: any = {
+      country: {
+        name: sUserGroup.country?.name,
+        flag: sUserGroup.country?.flag
+      },
+      game: {
+        name: sUserGroup.game?.name,
+        description: sUserGroup.game?.description,
+        logo: sUserGroup.game?.logo
+      },
+      rank: {
+        name: sUserGroup.rank?.name,
+        logo: sUserGroup.rank?.logo
+      }
+    }
+    
     const headers = { 'content-type': 'application/json'}
-    const body=JSON.stringify(sUserGroup);
-    console.log(body)
-    return this.http.put(`http://localhost:3000/users/Groups?${sUserId}`, body, {'headers':headers})
+    const body=JSON.stringify(userGroup);
+    return this.http.put(`http://localhost:3000/users/Groups/${sUserId}`, body, {'headers':headers})
   }
 }

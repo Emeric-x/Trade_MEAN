@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit {
 
   Signup(sNewUserFirstname: string, sNewUserLastname: string, sNewUserLogin: string, sNewUserPassword: string){
     const newUser: User = {
+      _id: "",
       firstname: sNewUserFirstname,
       lastname: sNewUserLastname,
       login: sNewUserLogin,

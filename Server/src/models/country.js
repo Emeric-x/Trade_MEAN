@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const CountrySchema = mongoose.Schema({
-    id: { type: mongoose.Types.ObjectId, required: false },
+    _id: { type: mongoose.Types.ObjectId, required: false },
     name: { type: String, required: true },
     flag: { type: String, required: true }
 })

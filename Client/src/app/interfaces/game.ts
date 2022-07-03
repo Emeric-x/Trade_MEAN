@@ -4,7 +4,6 @@ export interface Game {
     description: string,
     logo: string,
     ranks: [{
-        id?: string,
         name: string,
         logo: string
     }]

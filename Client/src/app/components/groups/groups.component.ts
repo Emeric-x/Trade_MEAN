@@ -43,7 +43,6 @@ export class GroupsComponent implements OnInit {
     }
 
     this.GroupService.CurrentGroup = group
-
-    this.ApiService.PutUserGroup(this.AuthService.LoggedUserData?.id, group)
+    this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()
   }
 }

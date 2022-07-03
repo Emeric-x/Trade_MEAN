@@ -3,7 +3,7 @@ import { Game } from "./game"
 import { Rank } from "./rank"
 
 export interface User {
-    id?: string,
+    _id: string,
     firstname: string,
     lastname: string,
     login: string,

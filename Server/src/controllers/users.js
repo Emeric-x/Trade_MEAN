@@ -46,13 +46,12 @@ exports.UpdateUserPersonalData = async(req, res) => {
 exports.UpdateUserGroups = async(req, res) => {
     try {
         let user = await User.findById(req.params.id)
-
         if (!user) {
             res.status(404).json({ msg: 'No matching user' })
         } else {
-            user.groups.push(req.body.groups)
+            user.groups.push(req.body)
 
-            user = await user.findOneAndUpdate({ _id: req.params.id }, user, { new: true })
+            user = await User.findOneAndUpdate({ _id: req.params.id }, user, { new: true })
 
             res.json(user)
         }
