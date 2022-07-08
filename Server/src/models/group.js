@@ -15,7 +15,6 @@ const GroupSchema = mongoose.Schema({
             logo: { type: String, required: true }
         },
         rank: {
-            id: { type: mongoose.Types.ObjectId, required: true },
             name: { type: String, required: true },
             logo: { type: String, require: true }
         }

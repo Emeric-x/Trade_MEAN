@@ -10,8 +10,20 @@ export interface User {
     password: string,
     avatar: string,
     groups?: [{
-        country: Country,
-        game: Game,
-        rank: Rank
+        group_id: string,
+        topics: {
+            country: {
+                name: string,
+                flag: string
+            },
+            game: {
+                name: string
+                logo: string
+            },
+            rank: {
+                name: string
+                logo: string
+            }
+        }
     }]
 }

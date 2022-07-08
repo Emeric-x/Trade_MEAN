@@ -9,17 +9,19 @@ const UserSchema = mongoose.Schema({
     avatar: { type: String, required: true },
     groups: [{
         group_id: { type: String, required: true },
-        country: {
-            name: { type: String, required: true },
-            flag: { type: String, required: true }
-        },
-        game: {
-            name: { type: String, required: true },
-            logo: { type: String, required: true },
-        },
-        rank: {
-            name: { type: String, required: true },
-            logo: { type: String, require: true }
+        topics: {
+            country: {
+                name: { type: String, required: true },
+                flag: { type: String, required: true }
+            },
+            game: {
+                name: { type: String, required: true },
+                logo: { type: String, required: true },
+            },
+            rank: {
+                name: { type: String, required: true },
+                logo: { type: String, require: true }
+            }
         }
     }]
 })
