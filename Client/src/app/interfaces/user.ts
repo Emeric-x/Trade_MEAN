@@ -1,7 +1,3 @@
-import { Country } from "./country"
-import { Game } from "./game"
-import { Rank } from "./rank"
-
 export interface User {
     _id: string,
     firstname: string,

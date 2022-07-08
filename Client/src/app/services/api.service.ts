@@ -32,17 +32,16 @@ export class ApiService {
   PutUserGroup(sUserId: string, sUserGroup: Group){
     let userGroup: any = {
       country: {
-        name: sUserGroup.country?.name,
-        flag: sUserGroup.country?.flag
+        name: sUserGroup.topics.country?.name,
+        flag: sUserGroup.topics.country?.flag
       },
       game: {
-        name: sUserGroup.game?.name,
-        description: sUserGroup.game?.description,
-        logo: sUserGroup.game?.logo
+        name: sUserGroup.topics.game?.name,
+        logo: sUserGroup.topics.game?.logo
       },
       rank: {
-        name: sUserGroup.rank?.name,
-        logo: sUserGroup.rank?.logo
+        name: sUserGroup.topics.rank?.name,
+        logo: sUserGroup.topics.rank?.logo
       }
     }
 

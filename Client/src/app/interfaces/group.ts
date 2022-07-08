@@ -1,10 +1,10 @@
 export interface Group {
-    _id: string,
+    _id?: string,
     topics: {
         country: {
             id: string,
-            name: { type: String, required: true },
-            flag: { type: String, required: true }
+            name: string,
+            flag: string
         },
         game: {
             id: string,
@@ -17,7 +17,14 @@ export interface Group {
             logo: string
         }
     },
-    posts: [{
-
+    posts?: [{
+        author: {
+            author_id: string,
+            firstname: string,
+            lastname: string,
+            login: string,
+            avatar: string
+        },
+        text: string
     }]
 }

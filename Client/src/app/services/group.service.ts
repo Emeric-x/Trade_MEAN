@@ -14,7 +14,7 @@ export class GroupService {
     let groupExists: boolean = false
 
     this.AuthService.LoggedUserData?.groups?.forEach(group => {
-      if(group.country.name === sGroupCountryName && group.game.name === sGroupGameName && group.rank.name === sGroupRankName){
+      if(group.topics.country.name === sGroupCountryName && group.topics.game.name === sGroupGameName && group.topics.rank.name === sGroupRankName){
         groupExists = true
       }
     });

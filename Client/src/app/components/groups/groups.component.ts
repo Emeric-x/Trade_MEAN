@@ -40,14 +40,28 @@ export class GroupsComponent implements OnInit {
       this.GroupService.CurrentGroup = sGroup
     }else{
       let group: Group = {
-        country: this.ChoosedCountry,
-        game: this.ChoosedGame,
-        rank: this.ChoosedRank
+        topics: {
+          country: {
+            id: this.ChoosedCountry!._id,
+            name: this.ChoosedCountry!.name,
+            flag: this.ChoosedCountry!.flag
+          },
+          game: {
+            id: this.ChoosedGame!.id,
+            name: this.ChoosedGame!.name,
+            description: this.ChoosedGame!.description,
+            logo: this.ChoosedGame!.logo
+          },
+          rank: {
+            name: this.ChoosedRank!.name,
+            logo: this.ChoosedRank!.logo
+          }
+        }
       }
       this.GroupService.CurrentGroup = group
 
       if(SaveData){
-        if(this.GroupService.isGroupExisting(group.country!.name, group.game!.name, group.rank!.name)){
+        if(this.GroupService.isGroupExisting(group.topics.country.name, group.topics.game.name, group.topics.rank.name)){
           alert("You already have this group in your group list.")
         }else{
           this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()

@@ -1,6 +1,6 @@
 <div>
     <h1>Your groups</h1>
-    <button *ngFor="let group of this.AuthService.LoggedUserData?.groups" (click)="SaveGroup(false, group)">{{ group.rank.name }}</button>
+    <button *ngFor="let group of this.AuthService.LoggedUserData?.groups" (click)="SaveGroup(false, group)">{{ group.topics.rank.name }}</button>
 </div>
 
 <div>
