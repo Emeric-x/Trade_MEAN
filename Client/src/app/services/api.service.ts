@@ -29,19 +29,21 @@ export class ApiService {
     return this.http.post(`http://localhost:3000/users`, body, {'headers':headers})
   }
 
-  PutUserGroup(sUserId: string, sUserGroup: Group){
+  PutUserGroup(sUserId: string | undefined, sUserGroup: Group){
     let userGroup: any = {
-      country: {
-        name: sUserGroup.topics.country?.name,
-        flag: sUserGroup.topics.country?.flag
-      },
-      game: {
-        name: sUserGroup.topics.game?.name,
-        logo: sUserGroup.topics.game?.logo
-      },
-      rank: {
-        name: sUserGroup.topics.rank?.name,
-        logo: sUserGroup.topics.rank?.logo
+      topics: {
+        country: {
+          name: sUserGroup.topics.country?.name,
+          flag: sUserGroup.topics.country?.flag
+        },
+        game: {
+          name: sUserGroup.topics.game?.name,
+          logo: sUserGroup.topics.game?.logo
+        },
+        rank: {
+          name: sUserGroup.topics.rank?.name,
+          logo: sUserGroup.topics.rank?.logo
+        }
       }
     }
 

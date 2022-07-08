@@ -1,12 +1,12 @@
 export interface User {
-    _id: string,
+    _id?: string,
     firstname: string,
     lastname: string,
     login: string,
     password: string,
     avatar: string,
     groups?: [{
-        group_id: string,
+        group_id?: string,
         topics: {
             country: {
                 name: string,
