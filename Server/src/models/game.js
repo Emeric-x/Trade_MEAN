@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const GameSchema = mongoose.Schema({
-    _id: { type: mongoose.Types.ObjectId, required: false },
+    // _id generated automatically
     name: { type: String, required: true },
     description: { type: String, required: true },
     logo: { type: String, required: true },

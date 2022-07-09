@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const GroupSchema = mongoose.Schema({
-    _id: { type: String, required: true },
+    // _id generated automatically
     topics: {
         country: {
             id: { type: mongoose.Types.ObjectId, required: true },
