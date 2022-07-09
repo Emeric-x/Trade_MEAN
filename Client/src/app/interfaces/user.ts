@@ -6,7 +6,7 @@ export interface User {
     password: string,
     avatar: string,
     groups?: [{
-        group_id?: string,
+        group_id: string,
         topics: {
             country: {
                 name: string,
