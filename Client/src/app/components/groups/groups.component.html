@@ -2,7 +2,7 @@
     <h1>Your groups</h1>
     <div *ngIf="this.AuthService.LoggedUserData?.groups !== null; else UserHasNoGroups">
         <button *ngFor="let group of this.AuthService.LoggedUserData?.groups" (click)="SaveGroup(false, group)">
-            {{ group.topics.rank.name }}
+            <img src="assets/Rocket League/Rocket League.jpg" class="imgBtnGroup">
         </button>
     </div>
     <ng-template #UserHasNoGroups>You have no groups saved.</ng-template>

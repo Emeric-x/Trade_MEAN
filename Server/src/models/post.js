@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const PostSchema = mongoose.Schema({
-    _id: { type: String, required: true },
+    // _id generated automatically
     author: {
         author_id: { type: mongoose.Types.ObjectId, required: true },
         firstname: { type: String, required: true },
