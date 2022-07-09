@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose")
 const User = require("../models/user")
 
 exports.GetAllusers = async(req, res) => {
