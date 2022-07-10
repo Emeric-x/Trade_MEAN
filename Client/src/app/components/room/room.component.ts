@@ -28,6 +28,6 @@ export class RoomComponent implements OnInit {
       text: sPostMessage
     }
 
-    this.PostService.PutPost(post)
+    this.PostService.PutPost(post, this.GroupService.CurrentGroup)
   }
 }

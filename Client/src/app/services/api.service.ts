@@ -65,9 +65,12 @@ export class ApiService {
     return this.http.put(`http://localhost:3000/users/Groups/${sUserId}`, body, {'headers':headers})
   }
 
-  PutPost(sPost: Post){
+  PutPost(sPost: Post, sGroup: Group){
     const headers = { 'content-type': 'application/json'}
-    const body=JSON.stringify(sPost);
+    const body=JSON.stringify({
+      post: sPost,
+      group: sGroup
+    });
     return this.http.put(`http://localhost:3000/posts`, body, {'headers':headers})
   }
 }

@@ -1,3 +1,4 @@
+const Group = require("../models/group")
 const Post = require("../models/post")
 
 exports.GetAllPosts = async(req, res) => {
@@ -12,10 +13,11 @@ exports.GetAllPosts = async(req, res) => {
 
 exports.PutPost = async(req, res) => {
     try {
-        const post = new Post(req.body)
+        const post = new Post(req.body.post)
         await post.save()
 
-        //save post into User Posts
+        const group = new Group(req.body.group)
+        await group.save()
 
         res.send(true)
     } catch (err) {
