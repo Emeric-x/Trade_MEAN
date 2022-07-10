@@ -16,8 +16,8 @@ exports.PutPost = async(req, res) => {
         const post = new Post(req.body.post)
         await post.save()
 
-        const group = new Group(req.body.group)
-        await group.save()
+        const group = await Group.findById(req.body.group_id)
+        group.posts.push(post)
 
         res.send(true)
     } catch (err) {

@@ -19,7 +19,7 @@ export class RoomComponent implements OnInit {
   NewPost(sPostMessage: string){
     let post: Post = {
       author: {
-        author_id: this.AuthService.LoggedUserData!._id,
+        author_id: this.AuthService.LoggedUserData!._id!,
         firstname: this.AuthService.LoggedUserData!.firstname,
         lastname: this.AuthService.LoggedUserData!.lastname,
         login: this.AuthService.LoggedUserData!.login,
@@ -28,6 +28,6 @@ export class RoomComponent implements OnInit {
       text: sPostMessage
     }
 
-    this.PostService.PutPost(post, this.GroupService.CurrentGroup)
+    this.PostService.PutPost(post, this.GroupService.CurrentGroup?._id!)
   }
 }

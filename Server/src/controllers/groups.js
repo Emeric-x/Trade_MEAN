@@ -73,7 +73,7 @@ exports.GetGroupByTopicsNames = async(req, res) => {
         if (isGroupExisting) {
             res.json(group)
         } else {
-            this.PostGroup().body = req.body
+            this.PostGroup().body = req.body //TODO fix this
         }
 
         res.status(404).json({ msg: 'No groups' })
