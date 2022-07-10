@@ -1,3 +1,43 @@
 <p><b>Game : </b>{{ this.GroupService.CurrentGroup?.topics?.game?.name }}</p>
 <p><b>Country : </b>{{ this.GroupService.CurrentGroup?.topics?.country?.name }}</p>
 <p><b>Rank : </b>{{ this.GroupService.CurrentGroup?.topics?.rank?.name }}</p>
+
+<br>
+
+<div *ngFor="let post of this.GroupService.CurrentGroup?.posts">
+    <p>{{ post.author.login }}</p>
+    <p>{{ post.text }}</p>
+</div>
+
+<br>
+
+<div>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#modalNewPost" data-bs-whatever="@mdo">New Post</button>
+
+    <div class="modal fade" id="modalNewPost" tabindex="-1" aria-labelledby="modalNewPostLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="Author-name" class="col-form-label">Author:</label>
+                            <input type="text" class="form-control" id="Author-name" [value]="this.AuthService.LoggedUserData?.login" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text" #postMessage></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal">Close</button>
+                    <button type="button" (click)="NewPost(postMessage.value)">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

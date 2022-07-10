@@ -37,7 +37,7 @@ export class GroupsComponent implements OnInit {
 
   SaveGroup(SaveData: boolean, sGroup: any){
     if(sGroup !== null){
-      this.GroupService.CurrentGroup = sGroup
+      this.GroupService.SetCurrentGroup(sGroup)
     }else{
       let group: Group = {
         topics: {
@@ -58,10 +58,12 @@ export class GroupsComponent implements OnInit {
           }
         }
       }
-      this.GroupService.CurrentGroup = group
+
+      this.GroupService.SetCurrentGroup(group)
+      group._id = this.GroupService.CurrentGroup?._id
 
       if(SaveData){
-        if(this.GroupService.isGroupExisting(group.topics.country.name, group.topics.game.name, group.topics.rank.name)){
+        if(this.GroupService.isUserAlreadyIn(group.topics.country.name, group.topics.game.name, group.topics.rank.name)){
           alert("You already have this group in your group list.")
         }else{
           this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()

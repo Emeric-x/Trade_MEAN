@@ -1,5 +1,4 @@
 const Game = require("../models/game")
-const Rank = require("../models/rank")
 
 exports.GetAllGames = async(req, res) => {
     try {

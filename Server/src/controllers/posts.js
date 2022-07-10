@@ -10,7 +10,7 @@ exports.GetAllPosts = async(req, res) => {
     }
 }
 
-exports.PostPost = async(req, res) => {
+exports.PutPost = async(req, res) => {
     try {
         const post = new Post(req.body)
         await post.save()

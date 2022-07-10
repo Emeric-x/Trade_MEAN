@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Group } from '../interfaces/group';
+import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,16 +9,22 @@ import { AuthService } from './auth.service';
 export class GroupService {
   CurrentGroup: Group | undefined
 
-  constructor(private AuthService: AuthService) { }
+  constructor(private AuthService: AuthService, private ApiService: ApiService) { }
 
-  isGroupExisting(sGroupCountryName: string, sGroupGameName: string, sGroupRankName: string,){
-    let groupExists: boolean = false
+  isUserAlreadyIn(sGroupCountryName: string, sGroupGameName: string, sGroupRankName: string){
+    let UserIn: boolean = false
 
     this.AuthService.LoggedUserData?.groups?.forEach(group => {
       if(group.topics.country.name === sGroupCountryName && group.topics.game.name === sGroupGameName && group.topics.rank.name === sGroupRankName){
-        groupExists = true
+        UserIn = true
       }
     });
-    return groupExists
+    return UserIn
+  }
+
+  SetCurrentGroup(sGroup: any){
+    this.ApiService.GetGroupByTopicsNames(sGroup).subscribe((Result: any) => {
+      this.CurrentGroup = Result
+    })
   }
 }

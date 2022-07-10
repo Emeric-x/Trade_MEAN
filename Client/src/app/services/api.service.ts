@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Group } from '../interfaces/group';
+import { Post } from '../interfaces/post';
 import { User } from '../interfaces/user';
 import { AuthService } from './auth.service';
 
@@ -21,6 +22,16 @@ export class ApiService {
 
   GetAllUsers() {
     return this.http.get(`http://localhost:3000/users`)
+  }
+
+  GetAllGroups(){
+    return this.http.get(`http://localhost:3000/groups`)
+  }
+
+  GetGroupByTopicsNames(sGroup: any){
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify(sGroup);
+    return this.http.put(`http://localhost:3000/group/GetGroupByTopicsNames`, body, {'headers':headers})
   }
 
   PostUser(sNewUser: User){
@@ -52,5 +63,11 @@ export class ApiService {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(userGroup);
     return this.http.put(`http://localhost:3000/users/Groups/${sUserId}`, body, {'headers':headers})
+  }
+
+  PutPost(sPost: Post){
+    /*const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify();
+    return this.http.put(`http://localhost:3000/users/Groups/${sUserId}`, body, {'headers':headers})*/
   }
 }
