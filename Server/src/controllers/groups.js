@@ -61,22 +61,22 @@ exports.GetGroup = async(req, res) => {
 
 exports.GetGroupByTopicsNames = async(req, res) => {
     try {
-        const group = await this.GetAllGroups()
+        const groups = await this.GetAllGroups()
+        let groupReturn = null
         let isGroupExisting = false
 
-        group.forEach(group => {
-            if (group.topics.country.name === req.body.topics.countryName && group.topics.game.name === req.body.topics.gameName && group.topics.rank.name === req.body.topics.rankName) {
+        groups.forEach(group => {
+            if (group.topics.country.name === req.body.topics.country.name && group.topics.game.name === req.body.topics.game.name && group.topics.rank.name === req.body.topics.rank.name) {
                 isGroupExisting = true
+                groupReturn = group
             }
         });
 
-        if (isGroupExisting) {
-            res.json(group)
-        } else {
-            this.PostGroup().body = req.body //TODO fix this
+        if (!isGroupExisting) {
+            this.PostGroup()
         }
 
-        res.status(404).json({ msg: 'No groups' })
+        res.json(groupReturn)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')

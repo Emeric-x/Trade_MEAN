@@ -31,7 +31,7 @@ export class ApiService {
   GetGroupByTopicsNames(sGroup: any){
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(sGroup);
-    return this.http.put(`http://localhost:3000/group/GetGroupByTopicsNames`, body, {'headers':headers})
+    return this.http.post(`http://localhost:3000/groups/GetGroupByTopicsNames`, body, {'headers':headers})
   }
 
   PostUser(sNewUser: User){
@@ -65,12 +65,12 @@ export class ApiService {
     return this.http.put(`http://localhost:3000/users/Groups/${sUserId}`, body, {'headers':headers})
   }
 
-  PutPost(sPost: Post, sGroup_id: string){
+  PostPost(sPost: Post, sGroup_id: string){
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify({
       post: sPost,
       group_id: sGroup_id
     });
-    return this.http.put(`http://localhost:3000/posts`, body, {'headers':headers})
+    return this.http.post(`http://localhost:3000/posts`, body, {'headers':headers})
   }
 }

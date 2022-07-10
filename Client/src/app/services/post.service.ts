@@ -10,7 +10,7 @@ export class PostService {
 
   constructor(private ApiService: ApiService) { }
 
-  PutPost(sPost: Post, sGroup_id: string){
-    this.ApiService.PutPost(sPost, sGroup_id).subscribe()
+  PostPost(sPost: Post, sGroup_id: string){
+    this.ApiService.PostPost(sPost, sGroup_id).subscribe()
   }
 }

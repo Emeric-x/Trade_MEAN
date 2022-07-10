@@ -7,6 +7,6 @@ router.post('/', groupsController.PostGroup)
 router.put('/:id', groupsController.UpdateGroup)
 router.get('/:id', groupsController.GetGroup)
 router.delete('/:id', groupsController.DeleteGroup)
-router.get('/GetGroupByTopicsNames', groupsController.GetGroupByTopicsNames)
+router.post('/GetGroupByTopicsNames', groupsController.GetGroupByTopicsNames)
 
 module.exports = router
