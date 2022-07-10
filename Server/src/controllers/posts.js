@@ -15,6 +15,8 @@ exports.PutPost = async(req, res) => {
         const post = new Post(req.body)
         await post.save()
 
+        //save post into User Posts
+
         res.send(true)
     } catch (err) {
         console.log(err)
