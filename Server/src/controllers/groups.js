@@ -4,6 +4,7 @@ exports.GetAllGroups = async(req, res) => {
     try {
         const AllGroups = await Group.find()
         res.json(AllGroups)
+        return AllGroups
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
@@ -61,7 +62,7 @@ exports.GetGroup = async(req, res) => {
 
 exports.GetGroupByTopicsNames = async(req, res) => {
     try {
-        const groups = await this.GetAllGroups()
+        const groups = await this.GetAllGroups(req, res)
         let groupReturn = null
         let isGroupExisting = false
 
@@ -73,7 +74,7 @@ exports.GetGroupByTopicsNames = async(req, res) => {
         });
 
         if (!isGroupExisting) {
-            this.PostGroup()
+            await this.PostGroup(req, res)
         }
 
         res.json(groupReturn)

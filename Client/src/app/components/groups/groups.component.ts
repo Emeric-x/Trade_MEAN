@@ -47,7 +47,7 @@ export class GroupsComponent implements OnInit {
             flag: this.ChoosedCountry!.flag
           },
           game: {
-            id: this.ChoosedGame!.id,
+            id: this.ChoosedGame!._id,
             name: this.ChoosedGame!.name,
             description: this.ChoosedGame!.description,
             logo: this.ChoosedGame!.logo
@@ -59,6 +59,8 @@ export class GroupsComponent implements OnInit {
         }
       }
 
+      console.log(this.ChoosedGame)
+
       this.GroupService.SetCurrentGroup(group)
       group._id = this.GroupService.CurrentGroup?._id
 
@@ -66,7 +68,7 @@ export class GroupsComponent implements OnInit {
         if(this.GroupService.isUserAlreadyIn(group.topics.country.name, group.topics.game.name, group.topics.rank.name)){
           alert("You already have this group in your group list.")
         }else{
-          this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id, group).subscribe()
+          this.ApiService.PutUserGroup(this.AuthService.LoggedUserData?._id, group).subscribe()
         }
       }
     }
