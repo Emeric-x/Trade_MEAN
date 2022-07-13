@@ -16,7 +16,7 @@ exports.PostGroup = async(req, res) => {
         const group = new Group(req.body)
         await group.save()
 
-        res.send(true)
+        res.json(group)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
@@ -74,7 +74,7 @@ exports.GetGroupByTopicsNames = async(req, res) => {
         });
 
         if (!isGroupExisting) {
-            await this.PostGroup(req, res)
+            groupReturn = await this.PostGroup(req, res)
         }
 
         res.json(groupReturn)

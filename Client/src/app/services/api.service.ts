@@ -40,8 +40,9 @@ export class ApiService {
     return this.http.post(`http://localhost:3000/users`, body, {'headers':headers})
   }
 
-  PutUserGroup(sUserId: string | undefined, sUserGroup: Group){
+  PutUserGroup(sUserId: string, sUserGroup: Group){
     let userGroup: any = {
+      _id: sUserGroup._id,
       topics: {
         country: {
           name: sUserGroup.topics.country?.name,
