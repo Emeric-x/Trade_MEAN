@@ -35,9 +35,9 @@ export class GroupsComponent implements OnInit {
     })
   }
 
-  SaveGroup(SaveData: boolean, sGroup: any){
-    if(sGroup !== null){
-      this.GroupService.SetCurrentGroup(sGroup)
+  SaveGroup(SaveData: boolean, sUserGroup: any){
+    if(sUserGroup !== null){
+      this.GroupService.GetGroupById(sUserGroup._id)
     }else{
       let group: Group = {
         topics: {
@@ -59,7 +59,7 @@ export class GroupsComponent implements OnInit {
         }
       }
 
-      this.GroupService.SetCurrentGroup(group)
+      this.GroupService.GetGroupByTopicsNames(group)
       group._id = this.GroupService.CurrentGroup?._id
 
       if(SaveData){

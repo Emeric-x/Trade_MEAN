@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Group } from '../interfaces/group';
 import { Post } from '../interfaces/post';
 import { ApiService } from './api.service';
 

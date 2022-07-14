@@ -28,6 +28,10 @@ export class ApiService {
     return this.http.get(`http://localhost:3000/groups`)
   }
 
+  GetGroupById(sGroup_id: string){
+    return this.http.get(`http://localhost:3000/groups/${sGroup_id}`)
+  }
+
   GetGroupByTopicsNames(sGroup: any){
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(sGroup);

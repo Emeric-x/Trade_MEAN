@@ -22,7 +22,13 @@ export class GroupService {
     return UserIn
   }
 
-  SetCurrentGroup(sGroup: any){
+  GetGroupById(sGroup_id: string){
+    this.ApiService.GetGroupById(sGroup_id).subscribe((Result: any) => {
+      this.CurrentGroup = Result
+    })
+  }
+
+  GetGroupByTopicsNames(sGroup: any){
     this.ApiService.GetGroupByTopicsNames(sGroup).subscribe((Result: any) => {
       this.CurrentGroup = Result
     })

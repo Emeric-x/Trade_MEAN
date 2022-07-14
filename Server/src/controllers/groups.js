@@ -4,10 +4,18 @@ exports.GetAllGroups = async(req, res) => {
     try {
         const AllGroups = await Group.find()
         res.json(AllGroups)
-        return AllGroups
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
+    }
+}
+
+exports.GetAllGroupsNoRes = async(req, res) => {
+    try {
+        const AllGroups = await Group.find()
+        return AllGroups
+    } catch (err) {
+        console.log(err)
     }
 }
 
@@ -20,6 +28,17 @@ exports.PostGroup = async(req, res) => {
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
+    }
+}
+
+exports.PostGroupNoRes = async(req, res) => {
+    try {
+        const group = new Group(req.body)
+        await group.save()
+
+        return group
+    } catch (err) {
+        console.log(err)
     }
 }
 
@@ -62,7 +81,7 @@ exports.GetGroup = async(req, res) => {
 
 exports.GetGroupByTopicsNames = async(req, res) => {
     try {
-        const groups = await this.GetAllGroups(req, res)
+        const groups = await this.GetAllGroupsNoRes(req, res)
         let groupReturn = null
         let isGroupExisting = false
 
@@ -74,13 +93,13 @@ exports.GetGroupByTopicsNames = async(req, res) => {
         });
 
         if (!isGroupExisting) {
-            groupReturn = await this.PostGroup(req, res)
+            groupReturn = await this.PostGroupNoRes(req, res)
         }
 
         res.json(groupReturn)
     } catch (err) {
         console.log(err)
-        res.status(500).send('Server Error')
+        res.status(500).send(`Server Error: ${err}`)
     }
 }
 
