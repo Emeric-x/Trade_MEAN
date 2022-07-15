@@ -7,6 +7,8 @@ import { Country } from 'src/app/interfaces/country';
 import { Game } from 'src/app/interfaces/game';
 import { Rank } from 'src/app/interfaces/rank';
 import { AuthService } from 'src/app/services/auth.service';
+import { GameService } from 'src/app/services/game.service';
+import { CountryService } from 'src/app/services/country.service';
 
 @Component({
   selector: 'app-groups',
@@ -20,19 +22,15 @@ export class GroupsComponent implements OnInit {
   ChoosedCountry: Country | undefined
   ChoosedRank: Rank | undefined
 
-  constructor(private ApiService: ApiService, 
+  constructor(private GameService: GameService,
+    private CountryService: CountryService, 
     private GroupService: GroupService, 
     public router: Router,
     public AuthService: AuthService) { }
 
-  ngOnInit(): void {
-    this.ApiService.GetAllGames().subscribe(Result => {
-      this.ListGames = Result
-    })
-
-    this.ApiService.GetAllCountries().subscribe(Result => {
-      this.ListCountries = Result
-    })
+  async ngOnInit() {
+    this.ListGames = await this.GameService.GetAllGames()
+    this.ListCountries = await this.CountryService.GetAllCountries()
   }
 
   async SaveGroup(SaveData: boolean, sUserGroup: any){
