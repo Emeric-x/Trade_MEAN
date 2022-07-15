@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Group } from '../interfaces/group';
 import { Post } from '../interfaces/post';
 import { User } from '../interfaces/user';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient, private AuthService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
   GetAllGames() {
     return this.http.get(`http://localhost:3000/games`)
@@ -22,6 +21,16 @@ export class ApiService {
 
   GetAllUsers() {
     return this.http.get(`http://localhost:3000/users`)
+  }
+
+  GetUserByLoginInfo(sLogin: string, sPwd: string) {
+    const jsonData = {
+      "login": sLogin,
+      "pwd": sPwd
+    }
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify(jsonData);
+    return this.http.post(`http://localhost:3000/users/signin`, body, {'headers':headers})
   }
 
   GetAllGroups(){
@@ -62,8 +71,6 @@ export class ApiService {
         }
       }
     }
-
-    this.AuthService.LoggedUserData?.groups?.push(userGroup)
     
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(userGroup);

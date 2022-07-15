@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,12 +10,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private ApiService: ApiService, private router: Router, private AuthService: AuthService) { }
+  constructor(private router: Router, private AuthService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  Signup(sNewUserFirstname: string, sNewUserLastname: string, sNewUserLogin: string, sNewUserPassword: string){
+  async Signup(sNewUserFirstname: string, sNewUserLastname: string, sNewUserLogin: string, sNewUserPassword: string){
     const newUser: User = {
       firstname: sNewUserFirstname,
       lastname: sNewUserLastname,
@@ -25,10 +24,11 @@ export class SignUpComponent implements OnInit {
       avatar: "ok"
     }
 
-    this.ApiService.PostUser(newUser).subscribe((Result: any) => {
-      this.AuthService.LoggedUserData = Result
+    this.AuthService.LoggedUserData = await this.AuthService.SignUpUser(newUser)
+
+    if(this.AuthService.LoggedUserData){
       this.AuthService.isAuth = true
       this.router.navigate(['/Groups'])
-    })
+    }
   }
 }

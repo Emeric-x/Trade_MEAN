@@ -1,12 +1,21 @@
 const User = require("../models/user")
 
-exports.GetAllusers = async(req, res) => {
+exports.GetAllUsers = async(req, res) => {
     try {
         const AllUsers = await User.find()
         res.json(AllUsers)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
+    }
+}
+
+exports.GetAllUsersNoRes = async(req, res) => {
+    try {
+        const AllUsers = await User.find()
+        return AllUsers
+    } catch (err) {
+        console.log(err)
     }
 }
 
@@ -53,6 +62,21 @@ exports.UpdateUserGroups = async(req, res) => {
 
             user = await User.findOneAndUpdate({ _id: req.params.id }, user, { new: true })
 
+            res.json(req.body)
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+}
+
+exports.GetUserById = async(req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+
+        if (!user) {
+            res.status(404).json({ msg: 'No matching user' })
+        } else {
             res.json(user)
         }
     } catch (err) {
@@ -61,14 +85,21 @@ exports.UpdateUserGroups = async(req, res) => {
     }
 }
 
-exports.GetUser = async(req, res) => {
+exports.GetUserByLoginInfo = async(req, res) => {
     try {
-        const user = await User.findById(req.params.id)
+        const users = await this.GetAllUsersNoRes(req, res)
+        let userFound = null
 
-        if (!user) {
+        users.forEach(user => {
+            if (user.login === req.body.login && user.password === req.body.pwd) {
+                userFound = user
+            }
+        });
+
+        if (userFound === null) {
             res.status(404).json({ msg: 'No matching user' })
         } else {
-            res.json(user)
+            res.json(userFound)
         }
     } catch (err) {
         console.log(err)

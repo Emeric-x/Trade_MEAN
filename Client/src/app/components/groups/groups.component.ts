@@ -66,7 +66,7 @@ export class GroupsComponent implements OnInit {
         if(this.GroupService.isUserAlreadyIn(group.topics.country.name, group.topics.game.name, group.topics.rank.name)){
           alert("You already have this group in your group list.")
         }else{
-          this.ApiService.PutUserGroup(this.AuthService.LoggedUserData!._id!, group).subscribe()
+          this.AuthService.LoggedUserData?.groups?.push(await this.AuthService.NewUserGroup(group))
         }
       }
     }
