@@ -35,9 +35,9 @@ export class GroupsComponent implements OnInit {
     })
   }
 
-  SaveGroup(SaveData: boolean, sUserGroup: any){
+  async SaveGroup(SaveData: boolean, sUserGroup: any){
     if(sUserGroup !== null){
-      this.GroupService.GetGroupById(sUserGroup._id)
+      this.GroupService.CurrentGroup = await this.GroupService.GetGroupById(sUserGroup._id)
     }else{
       let group: Group = {
         topics: {
@@ -59,9 +59,9 @@ export class GroupsComponent implements OnInit {
         }
       }
 
-      this.GroupService.GetGroupByTopicsNames(group)
+      this.GroupService.CurrentGroup = await this.GroupService.GetGroupByTopicsNames(group)
       group._id = this.GroupService.CurrentGroup?._id
-
+      
       if(SaveData){
         if(this.GroupService.isUserAlreadyIn(group.topics.country.name, group.topics.game.name, group.topics.rank.name)){
           alert("You already have this group in your group list.")

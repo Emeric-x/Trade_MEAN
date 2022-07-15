@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class GroupService {
-  CurrentGroup: Group | undefined
+  CurrentGroup: any
 
   constructor(private AuthService: AuthService, private ApiService: ApiService) { }
 
@@ -23,14 +23,10 @@ export class GroupService {
   }
 
   GetGroupById(sGroup_id: string){
-    this.ApiService.GetGroupById(sGroup_id).subscribe((Result: any) => {
-      this.CurrentGroup = Result
-    })
+    return this.ApiService.GetGroupById(sGroup_id).toPromise()
   }
 
   GetGroupByTopicsNames(sGroup: any){
-    this.ApiService.GetGroupByTopicsNames(sGroup).subscribe((Result: any) => {
-      this.CurrentGroup = Result
-    })
+    return this.ApiService.GetGroupByTopicsNames(sGroup).toPromise()
   }
 }

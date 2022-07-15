@@ -15,7 +15,7 @@ exports.PostUser = async(req, res) => {
         const user = new User(req.body)
         await user.save()
 
-        res.send(true)
+        res.json(user)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')

@@ -25,12 +25,10 @@ export class SignUpComponent implements OnInit {
       avatar: "ok"
     }
 
-    this.ApiService.PostUser(newUser).subscribe(Result => {
-      if(Result){
-        this.AuthService.LoggedUserData = newUser
-        this.AuthService.isAuth = true
-        this.router.navigate(['/Groups'])
-      }
+    this.ApiService.PostUser(newUser).subscribe((Result: any) => {
+      this.AuthService.LoggedUserData = Result
+      this.AuthService.isAuth = true
+      this.router.navigate(['/Groups'])
     })
   }
 }
