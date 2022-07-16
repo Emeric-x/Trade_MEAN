@@ -16,9 +16,8 @@ exports.PostPost = async(req, res) => {
         const post = new Post(req.body.post)
         await post.save()
 
-        const group = await GroupController.GetGroupNoRes(req, res)
-        if (group) {
-            group.posts.push(post)
+        const result = await GroupController.PushPost(req, res, post)
+        if (result) {
             res.send(true)
         } else {
             res.send(false)

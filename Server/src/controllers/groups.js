@@ -80,21 +80,6 @@ exports.GetGroup = async(req, res) => {
     }
 }
 
-exports.GetGroupNoRes = async(req, res) => {
-    try {
-        const group = await Group.findById(req.body.group_id)
-
-        if (!group) {
-            return 'No matching group'
-        } else {
-            return group
-        }
-    } catch (err) {
-        console.log(err)
-        res.status(500).send('Server Error')
-    }
-}
-
 exports.GetGroupByTopicsNames = async(req, res) => {
     try {
         const groups = await this.GetAllGroupsNoRes(req, res)
@@ -133,5 +118,22 @@ exports.DeleteGroup = async(req, res) => {
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
+    }
+}
+
+exports.PushPost = async(req, res, sPost) => {
+    try {
+        const group = await Group.findById(req.body.group_id)
+
+        if (!group) {
+            return 'No matching group'
+        } else {
+            group.posts.push(sPost)
+            await Group.findOneAndUpdate({ _id: req.body.group_id }, group, { new: true })
+
+            return true
+        }
+    } catch (err) {
+        return err
     }
 }
