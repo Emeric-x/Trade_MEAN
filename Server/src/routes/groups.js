@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const groupsController = require('../controllers/groups')
 
+//groups
 router.get('/', groupsController.GetAllGroups)
 router.post('/', groupsController.PostGroup)
 router.put('/:id', groupsController.UpdateGroup)

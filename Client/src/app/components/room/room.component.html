@@ -6,8 +6,13 @@
 <br>
 
 <div *ngFor="let post of this.GroupService.CurrentGroup?.posts">
-    <p>{{ post.author.login }}</p>
-    <p>{{ post.text }}</p>
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{ post.author.login }}</div>
+        <div class="card-body">
+            <h5 class="card-title">Dark card title</h5>
+            <p class="card-text">{{ post.text }}</p>
+        </div>
+    </div>
 </div>
 
 <br>

@@ -9,7 +9,7 @@ export class PostService {
 
   constructor(private ApiService: ApiService) { }
 
-  PostPost(sPost: Post, sGroup_id: string){
-    this.ApiService.PostPost(sPost, sGroup_id).subscribe()
+  PostPost(sPost: Post, sGroup_id: string): Promise<any>{
+    return this.ApiService.PostPost(sPost, sGroup_id).toPromise()
   }
 }

@@ -1,4 +1,5 @@
 const Group = require("../models/group")
+const Post = require("../models/post")
 
 exports.GetAllGroups = async(req, res) => {
     try {
@@ -72,6 +73,21 @@ exports.GetGroup = async(req, res) => {
             res.status(404).json({ msg: 'No matching group' })
         } else {
             res.json(group)
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+}
+
+exports.GetGroupNoRes = async(req, res) => {
+    try {
+        const group = await Group.findById(req.body.group_id)
+
+        if (!group) {
+            return 'No matching group'
+        } else {
+            return group
         }
     } catch (err) {
         console.log(err)

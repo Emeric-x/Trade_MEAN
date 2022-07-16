@@ -1,4 +1,4 @@
-const Group = require("../models/group")
+const GroupController = require("../controllers/groups")
 const Post = require("../models/post")
 
 exports.GetAllPosts = async(req, res) => {
@@ -11,15 +11,18 @@ exports.GetAllPosts = async(req, res) => {
     }
 }
 
-exports.PutPost = async(req, res) => {
+exports.PostPost = async(req, res) => {
     try {
         const post = new Post(req.body.post)
         await post.save()
 
-        const group = await Group.findById(req.body.group_id)
-        group.posts.push(post)
-
-        res.send(true)
+        const group = await GroupController.GetGroupNoRes(req, res)
+        if (group) {
+            group.posts.push(post)
+            res.send(true)
+        } else {
+            res.send(false)
+        }
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
