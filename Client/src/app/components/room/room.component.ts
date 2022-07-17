@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Post } from 'src/app/interfaces/post';
 import { AuthService } from 'src/app/services/auth.service';
 import { GroupService } from 'src/app/services/group.service';
@@ -14,8 +13,7 @@ export class RoomComponent implements OnInit {
 
   constructor(public GroupService: GroupService, 
     public AuthService: AuthService, 
-    private PostService: PostService,
-    private router: Router) { }
+    private PostService: PostService) { }
 
   ngOnInit(): void {
   }
@@ -36,7 +34,7 @@ export class RoomComponent implements OnInit {
     result = await this.PostService.PostPost(post, this.GroupService.CurrentGroup?._id!)
 
     if(result){
-      this.router.navigate(['/Room'])
+      alert('New post added')
     }
   }
 }

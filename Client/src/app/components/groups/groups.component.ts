@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Group } from 'src/app/interfaces/group';
-import { ApiService } from 'src/app/services/api.service';
 import { GroupService } from 'src/app/services/group.service';
 import { Country } from 'src/app/interfaces/country';
 import { Game } from 'src/app/interfaces/game';

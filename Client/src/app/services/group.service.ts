@@ -29,4 +29,8 @@ export class GroupService {
   GetGroupByTopicsNames(sGroup: any): Promise<any>{
     return this.ApiService.GetGroupByTopicsNames(sGroup).toPromise()
   }
+
+  async RefreshCurrentGroup() {
+    this.CurrentGroup = await this.GetGroupById(this.CurrentGroup?._id!)
+  }
 }
