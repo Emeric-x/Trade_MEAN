@@ -16,4 +16,8 @@ export class PostService {
   PostPost(sPost: Post, sGroup_id: string): Promise<any>{
     return this.ApiService.PostPost(sPost, sGroup_id).toPromise()
   }
+
+  AddRedy(sPost_id: string, sRedyData: any): Promise<any>{
+    return this.ApiService.AddPostRedy(sPost_id, sRedyData).toPromise()
+  }
 }

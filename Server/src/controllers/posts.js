@@ -37,6 +37,24 @@ exports.PostPost = async(req, res) => {
     }
 }
 
+exports.AddRedy = async(req, res) => {
+    try {
+        const post = await Post.findById(req.body.post_id)
+
+        if (!post) {
+            res.status(404).send('No matching group')
+        } else {
+            post.redy.push(req.body.RedyData)
+            await Post.findOneAndUpdate({ _id: req.body.post_id }, post, { new: true })
+
+            res.send(true)
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+}
+
 exports.UpdatePost = async(req, res) => {
     try {
         const { sCountry, sGame, sRank } = req.body

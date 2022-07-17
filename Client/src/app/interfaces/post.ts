@@ -7,5 +7,15 @@ export interface Post {
         login: string,
         avatar: string
     },
-    text: string
+    text: string,
+    redy?: [{
+        user: {
+            user_id: string,
+            firstname: string,
+            lastname: string,
+            login: string,
+            avatar: string
+        },
+        accepted: boolean
+    }]
 }

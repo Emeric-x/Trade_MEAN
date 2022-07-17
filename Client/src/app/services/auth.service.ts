@@ -21,6 +21,6 @@ export class AuthService {
   }
 
   NewUserGroup(sGroup: Group): Promise<any>{
-    return this.ApiService.PutUserGroup(this.LoggedUserData!._id!, sGroup).toPromise()
+    return this.ApiService.AddUserGroup(this.LoggedUserData!._id!, sGroup).toPromise()
   }
 }

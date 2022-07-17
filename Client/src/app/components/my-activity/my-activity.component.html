@@ -5,14 +5,12 @@
 
 <div>
     <h1>Your Redy Posts</h1>
-    <div *ngIf="">
-        <div *ngFor="let post of this.MyPosts">
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header">{{ post.author.login }}</div>
-                <div class="card-body">
-                    <h5 class="card-title">Dark card title</h5>
-                    <p class="card-text">{{ post.text }}</p>
-                </div>
+    <div *ngFor="let post of this.MyRedyPosts">
+        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{ post.author.login }}</div>
+            <div class="card-body">
+                <h5 class="card-title">Dark card title</h5>
+                <p class="card-text">{{ post.text }}</p>
             </div>
         </div>
     </div>
@@ -23,16 +21,20 @@
 
 <div>
     <h1>Your normal Posts</h1>
-    <div *ngIf="">
-        <div *ngFor="let post of this.MyPosts">
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header">{{ post.author.login }}</div>
-                <div class="card-body">
-                    <h5 class="card-title">Dark card title</h5>
-                    <p class="card-text">{{ post.text }}</p>
-                </div>
+    <div *ngFor="let post of this.MyNormalPosts">
+        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{ post.author.login }}</div>
+            <div class="card-body">
+                <h5 class="card-title">Dark card title</h5>
+                <p class="card-text">{{ post.text }}</p>
             </div>
         </div>
     </div>
     <ng-template #NoNormalPosts>You have no normal posts.</ng-template>
+</div>
+
+<br>
+
+<div>
+    <!--Match en cours-->
 </div>

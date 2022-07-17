@@ -10,6 +10,8 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class MyActivityComponent implements OnInit {
   MyPosts: Post[] | undefined
+  MyNormalPosts: Post[] | undefined
+  MyRedyPosts: Post[] | undefined
 
   constructor(private PostService: PostService, private AuthService: AuthService) { }
 
@@ -19,5 +21,16 @@ export class MyActivityComponent implements OnInit {
 
   async GetMyPosts(){
     this.MyPosts = await this.PostService.GetPostsByAuthorId(this.AuthService.LoggedUserData?._id!)
+    this.SetMyPosts()
+  }
+
+  SetMyPosts(){
+    this.MyPosts!.forEach(post => {
+      if(post.redy === null) {
+        this.MyNormalPosts?.push(post)
+      }else{
+        this.MyRedyPosts?.push(post)
+      }
+    });
   }
 }

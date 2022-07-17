@@ -38,7 +38,19 @@ export class RoomComponent implements OnInit {
     }
   }
 
-  AddRedyUser(sPost_id: string){
-    
+  async AddRedyUser(sPost_id: string){
+    let RedyData: any = {
+      user: {
+        user_id: this.AuthService.LoggedUserData?._id,
+        firstname: this.AuthService.LoggedUserData?.firstname,
+        lastname: this.AuthService.LoggedUserData?.lastname,
+        login: this.AuthService.LoggedUserData?.login,
+        avatar: this.AuthService.LoggedUserData?.avatar
+      },
+      accepted: false
+      
+    }
+
+    let result = await this.PostService.AddRedy(sPost_id, RedyData) 
   }
 }

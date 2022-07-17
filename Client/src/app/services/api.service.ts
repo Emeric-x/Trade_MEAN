@@ -57,7 +57,7 @@ export class ApiService {
     return this.http.post(`http://localhost:3000/users`, body, {'headers':headers})
   }
 
-  PutUserGroup(sUserId: string, sUserGroup: Group){
+  AddUserGroup(sUserId: string, sUserGroup: Group){
     let userGroup: any = {
       _id: sUserGroup._id,
       topics: {
@@ -79,6 +79,16 @@ export class ApiService {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(userGroup);
     return this.http.put(`http://localhost:3000/users/Groups/${sUserId}`, body, {'headers':headers})
+  }
+
+  AddPostRedy(sPost_id: string, sRedyData: any){
+    const jsonData = {
+      "post_id": sPost_id,
+      "RedyData": sRedyData
+    }
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify(jsonData);
+    return this.http.post(`http://localhost:3000/posts/redy`, body, {'headers':headers})
   }
 
   PostPost(sPost: Post, sGroup_id: string){
