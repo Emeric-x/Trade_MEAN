@@ -13,6 +13,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RoomComponent } from './components/room/room.component';
+import { MyActivityComponent } from './components/my-activity/my-activity.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'Signup', component: SignUpComponent }, 
   { path: 'Groups', canActivate:[AuthGuardService], component: GroupsComponent },
   { path: 'Room', canActivate:[AuthGuardService], component: RoomComponent },
+  { path: 'my-activity', canActivate:[AuthGuardService], component: MyActivityComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: '/not-found' }
 ]
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     FourOhFourComponent,
     SignInComponent,
     SignUpComponent,
-    RoomComponent
+    RoomComponent,
+    MyActivityComponent
   ],
   imports: [
     BrowserModule,

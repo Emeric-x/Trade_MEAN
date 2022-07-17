@@ -8,6 +8,8 @@
     <ng-template #UserHasNoGroups>You have no groups saved.</ng-template>
 </div>
 
+<br>
+
 <div>
     <h1>Create a new group</h1>
     <div *ngIf="!ChoosedGame && !ChoosedCountry">
@@ -28,3 +30,7 @@
         <button type="button" (click)="SaveGroup(false, null)">No</button>
     </div>
 </div>
+
+<br>
+
+<button type="button" routerLink="/my-activity">See my activity</button>

@@ -34,7 +34,11 @@ export class RoomComponent implements OnInit {
     result = await this.PostService.PostPost(post, this.GroupService.CurrentGroup?._id!)
 
     if(result){
-      alert('New post added')
+      alert('Your post has been added !')
     }
+  }
+
+  AddRedyUser(sPost_id: string){
+    
   }
 }

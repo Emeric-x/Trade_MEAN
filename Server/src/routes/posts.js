@@ -7,5 +7,6 @@ router.post('/', postsController.PostPost)
 router.put('/:id', postsController.UpdatePost)
 router.get('/:id', postsController.GetPost)
 router.delete('/:id', postsController.DeletePost)
+router.get('/myPosts/:author_id', postsController.GetPostsByAuthorId)
 
 module.exports = router

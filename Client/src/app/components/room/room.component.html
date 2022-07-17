@@ -1,3 +1,5 @@
+<button routerLink="/Groups">Go back</button>
+
 <p><b>Group_id : </b>{{ this.GroupService.CurrentGroup?._id }}</p>
 <p><b>Game : </b>{{ this.GroupService.CurrentGroup?.topics?.game?.name }}</p>
 <p><b>Country : </b>{{ this.GroupService.CurrentGroup?.topics?.country?.name }}</p>
@@ -15,6 +17,9 @@
         <div class="card-body">
             <h5 class="card-title">Dark card title</h5>
             <p class="card-text">{{ post.text }}</p>
+        </div>
+        <div class="card-footer" *ngIf="post.author.author_id !== this.AuthService.LoggedUserData?._id">
+            <button type="button" (click)="this.AddRedyUser(post.id)">Redy</button>
         </div>
     </div>
 </div>

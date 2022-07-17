@@ -11,6 +11,15 @@ exports.GetAllPosts = async(req, res) => {
     }
 }
 
+exports.GetAllPostsNoRes = async(req, res) => {
+    try {
+        const AllPosts = await Post.find()
+        return AllPosts
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 exports.PostPost = async(req, res) => {
     try {
         const post = new Post(req.body.post)
@@ -58,6 +67,27 @@ exports.GetPost = async(req, res) => {
             res.status(404).json({ msg: 'No matching post' })
         } else {
             res.json(post)
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+}
+
+exports.GetPostsByAuthorId = async(req, res) => {
+    try {
+        const posts = await this.GetAllPostsNoRes(req, res)
+        let myPosts = []
+
+        if (!posts) {
+            res.status(404).json({ msg: 'No posts' })
+        } else {
+            posts.forEach(post => {
+                if (post.author.author_id === req.params.author_id) {
+                    myPosts.push(post)
+                }
+            });
+            res.json(myPosts)
         }
     } catch (err) {
         console.log(err)

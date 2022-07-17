@@ -47,6 +47,10 @@ export class ApiService {
     return this.http.post(`http://localhost:3000/groups/GetGroupByTopicsNames`, body, {'headers':headers})
   }
 
+  GetPostsByAuthorId(sAuthor_id: string){
+    return this.http.get(`http://localhost:3000/posts/myPosts/${sAuthor_id}`)
+  }
+
   PostUser(sNewUser: User){
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(sNewUser);
