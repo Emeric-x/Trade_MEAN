@@ -101,12 +101,12 @@ exports.GetPostsByAuthorId = async(req, res) => {
             res.status(404).json({ msg: 'No posts' })
         } else {
             posts.forEach(post => {
-                if (post.author.author_id === req.params.author_id) {
+                if (post.author.author_id == req.params.id) { // no === because they've not the same type (string and ObjectId)
                     myPosts.push(post)
                 }
             });
-            res.json(myPosts)
         }
+        res.json(myPosts)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')

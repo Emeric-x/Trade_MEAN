@@ -35,6 +35,7 @@ export class RoomComponent implements OnInit {
 
     if(result){
       alert('Your post has been added !')
+      this.GroupService.RefreshCurrentGroup()
     }
   }
 

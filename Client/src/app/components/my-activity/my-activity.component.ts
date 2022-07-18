@@ -11,7 +11,9 @@ import { PostService } from 'src/app/services/post.service';
 export class MyActivityComponent implements OnInit {
   MyPosts: Post[] | undefined
   MyNormalPosts: Post[] | undefined
-  MyRedyPosts: Post[] | undefined
+  MyRedyPosts: Post[] | undefined 
+  UserAccepted: boolean = false
+  RedyUser: any
 
   constructor(private PostService: PostService, private AuthService: AuthService) { }
 
@@ -22,10 +24,13 @@ export class MyActivityComponent implements OnInit {
   async GetMyPosts(){
     this.MyPosts = await this.PostService.GetPostsByAuthorId(this.AuthService.LoggedUserData?._id!)
     this.SetMyPosts()
+    console.log(this.MyNormalPosts)
+    console.log(this.MyPosts)
+    console.log(this.MyRedyPosts)
   }
 
   SetMyPosts(){
-    this.MyPosts!.forEach(post => {
+    this.MyPosts!.forEach((post: Post) => {
       if(post.redy === null) {
         this.MyNormalPosts?.push(post)
       }else{

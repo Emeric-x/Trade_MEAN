@@ -8,6 +8,6 @@ router.post('/redy', postsController.AddRedy)
 router.put('/:id', postsController.UpdatePost)
 router.get('/:id', postsController.GetPost)
 router.delete('/:id', postsController.DeletePost)
-router.get('/myPosts/:author_id', postsController.GetPostsByAuthorId)
+router.get('/myPosts/:id', postsController.GetPostsByAuthorId)
 
 module.exports = router
