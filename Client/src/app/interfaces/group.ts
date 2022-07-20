@@ -18,7 +18,7 @@ export interface Group {
         }
     },
     posts?: [{
-        id: string,
+        _id: string,
         author: {
             author_id: string,
             firstname: string,

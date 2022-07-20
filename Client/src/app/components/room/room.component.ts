@@ -53,5 +53,9 @@ export class RoomComponent implements OnInit {
     }
 
     let result = await this.PostService.AddRedy(sPost_id, RedyData) 
+
+    if(result){
+      alert('redy added')
+    }
   }
 }

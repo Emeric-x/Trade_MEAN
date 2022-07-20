@@ -19,7 +19,7 @@
             <p class="card-text">{{ post.text }}</p>
         </div>
         <div class="card-footer" *ngIf="post.author.author_id !== this.AuthService.LoggedUserData?._id">
-            <button type="button" (click)="this.AddRedyUser(post.id)">Redy</button>
+            <button type="button" (click)="this.AddRedyUser(post._id)">Redy</button>
         </div>
     </div>
 </div>
