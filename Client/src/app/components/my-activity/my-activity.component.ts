@@ -22,6 +22,11 @@ export class MyActivityComponent implements OnInit {
   }
 
   async GetMyPosts(){
+    // set empty for the refresh button
+    this.MyPosts = []
+    this.MyNormalPosts = []
+    this.MyRedyPosts = []
+
     this.MyPosts = await this.PostService.GetPostsByAuthorId(this.AuthService.LoggedUserData?._id!)
     this.SetMyPosts()
   }
