@@ -9,9 +9,9 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./my-activity.component.css']
 })
 export class MyActivityComponent implements OnInit {
-  MyPosts: Post[] | undefined
-  MyNormalPosts: Post[] | undefined
-  MyRedyPosts: Post[] | undefined 
+  MyPosts: Post[] | undefined 
+  MyNormalPosts: any = []  // set to any bc type Post[] = problems xd
+  MyRedyPosts: any = []
   UserAccepted: boolean = false
   RedyUser: any
 
@@ -24,17 +24,14 @@ export class MyActivityComponent implements OnInit {
   async GetMyPosts(){
     this.MyPosts = await this.PostService.GetPostsByAuthorId(this.AuthService.LoggedUserData?._id!)
     this.SetMyPosts()
-    console.log(this.MyNormalPosts)
-    console.log(this.MyPosts)
-    console.log(this.MyRedyPosts)
   }
 
   SetMyPosts(){
     this.MyPosts!.forEach((post: Post) => {
-      if(post.redy === null) {
-        this.MyNormalPosts?.push(post)
+      if(post.redy?.length! < 1) {
+        this.MyNormalPosts.push(post)
       }else{
-        this.MyRedyPosts?.push(post)
+        this.MyRedyPosts.push(post)
       }
     });
   }
