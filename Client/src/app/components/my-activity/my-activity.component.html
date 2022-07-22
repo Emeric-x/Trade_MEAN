@@ -21,39 +21,41 @@
 
 <br>
 
-<div *ngIf="!this.UserAccepted; else RedyAccepted">
-    <h1>Your Redy Posts</h1>
-    <div *ngIf="this.MyRedyPosts !== null; else NoRedyPosts">
-        <div *ngFor="let post of this.MyRedyPosts">
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header">{{ post.author.login }}</div>
-                <div class="card-body">
-                    <h5 class="card-title">Dark card title</h5>
-                    <p class="card-text">{{ post.text }}</p>
-                </div>
-                <div class="card-footer">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalCheckRedyUsers" data-bs-whatever="@mdo">Check Redy users</button>
+<div>
+    <div *ngIf="!this.UserAccepted; else RedyAccepted">
+        <h1>Your Redy Posts</h1>
+        <div *ngIf="this.MyRedyPosts !== null; else NoRedyPosts">
+            <div *ngFor="let post of this.MyRedyPosts">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card-header">{{ post.author.login }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Dark card title</h5>
+                        <p class="card-text">{{ post.text }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#modalCheckRedyUsers" data-bs-whatever="@mdo">Check Redy users</button>
 
-                    <div class="modal fade" id="modalCheckRedyUsers" tabindex="-1" aria-labelledby="modalCheckRedyUsersLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Redy Users</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div *ngFor="let redyUser of post.redy">
-                                            <div class="mb-3">
-                                                <label for="Author-name" class="col-form-label">User:</label>
-                                                <input type="text" class="form-control" id="Author-name" [value]="redyUser.user.login" readonly>
+                        <div class="modal fade" id="modalCheckRedyUsers" tabindex="-1" aria-labelledby="modalCheckRedyUsersLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Redy Users</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div *ngFor="let redyUser of post.redy">
+                                                <div class="mb-3">
+                                                    <label for="Author-name" class="col-form-label">User:</label>
+                                                    <input type="text" class="form-control" id="Author-name" [value]="redyUser.user.login" readonly>
+                                                </div>
+                                                <button type="button" data-bs-dismiss="modal" (click)="this.UserAccepted = true; this.RedyUser = redyUser.user">Accept</button>
                                             </div>
-                                            <button type="button" data-bs-dismiss="modal" (click)="this.UserAccepted = true; this.RedyUser = redyUser.user">Accept</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" data-bs-dismiss="modal">Close</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -61,9 +63,14 @@
                 </div>
             </div>
         </div>
+        <ng-template #NoRedyPosts>You have no Redy posts.</ng-template>
     </div>
-    <ng-template #NoRedyPosts>You have no Redy posts.</ng-template>
+    <ng-template #RedyAccepted>
+        <h1>Match Accepted</h1>
+        <!--
+            Create a small chat
+First option: Show the pseudos (steam, epic, psn, etc)
+Second option: Make a call
+        -->
+    </ng-template>
 </div>
-<ng-template #RedyAccepted>
-    <!--Match en cours-->
-</ng-template>
