@@ -20,6 +20,8 @@ const postsRoute = require("./routes/posts")
 app.use('/posts', postsRoute)
 const groupsRoute = require("./routes/groups")
 app.use('/groups', groupsRoute)
+const chatsRoute = require("./routes/chats")
+app.use('/chats', chatsRoute)
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
