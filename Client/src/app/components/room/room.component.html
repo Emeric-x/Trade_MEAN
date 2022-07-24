@@ -17,6 +17,8 @@
         <div class="card-body">
             <h5 class="card-title">Dark card title</h5>
             <p class="card-text">{{ post.text }}</p>
+            <p class="card-text">{{ post.lookingFor.numberOfUsers }}</p>
+            <p class="card-text">{{ post.lookingFor.gameMod }}</p>
         </div>
         <div class="card-footer" *ngIf="post.author.author_id !== this.AuthService.LoggedUserData?._id">
             <button type="button" (click)="this.AddRedyUser(post._id)">Redy</button>
@@ -46,11 +48,19 @@
                             <label for="message-text" class="col-form-label">Message:</label>
                             <textarea class="form-control" id="message-text" #postMessage></textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="nbOfUsers" class="col-form-label">Number of users:</label>
+                            <input type="number" class="form-control" id="nbOfUsers" #nbOfUsers>
+                        </div>
+                        <div class="mb-3">
+                            <label for="game-mod" class="col-form-label">Game mod:</label>
+                            <input type="text" class="form-control" id="game-mod" #gameMod>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-bs-dismiss="modal">Close</button>
-                    <button type="button" data-bs-dismiss="modal" (click)="NewPost(postMessage.value)">Post</button>
+                    <button type="button" data-bs-dismiss="modal" (click)="NewPost(postMessage.value, nbOfUsers.valueAsNumber, gameMod.value)">Post</button>
                 </div>
             </div>
         </div>

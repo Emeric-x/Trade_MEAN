@@ -10,6 +10,10 @@ const PostSchema = mongoose.Schema({
         avatar: { type: String, required: true }
     },
     text: { type: String, required: true },
+    lookingFor: {
+        numberOfUsers: { type: Number, required: true },
+        gameMod: { type: String, required: true }
+    },
     redy: [{
         user: {
             user_id: { type: mongoose.Types.ObjectId, required: true },

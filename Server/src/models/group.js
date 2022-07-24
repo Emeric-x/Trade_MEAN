@@ -28,7 +28,11 @@ const GroupSchema = mongoose.Schema({
             login: { type: String, required: true },
             avatar: { type: String, required: true }
         },
-        text: { type: String, required: true }
+        text: { type: String, required: true },
+        lookingFor: {
+            numberOfUsers: { type: Number, required: true },
+            gameMod: { type: String, required: true }
+        }
     }]
 })
 

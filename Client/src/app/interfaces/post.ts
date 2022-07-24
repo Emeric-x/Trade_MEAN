@@ -8,6 +8,10 @@ export interface Post {
         avatar: string
     },
     text: string,
+    lookingFor: {
+        numberOfUsers: number,
+        gameMod: string
+    },
     redy?: [{
         user: {
             user_id: string,

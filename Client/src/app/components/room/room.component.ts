@@ -18,7 +18,7 @@ export class RoomComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async NewPost(sPostMessage: string){
+  async NewPost(sPostMessage: string, sNbOfUsers: number, sGameMod: string){
     let result: boolean = false
     let post: Post = {
       author: {
@@ -28,7 +28,11 @@ export class RoomComponent implements OnInit {
         login: this.AuthService.LoggedUserData!.login,
         avatar: this.AuthService.LoggedUserData!.avatar
       },
-      text: sPostMessage
+      text: sPostMessage,
+      lookingFor: {
+        numberOfUsers: sNbOfUsers,
+        gameMod: sGameMod
+      }
     }
 
     result = await this.PostService.PostPost(post, this.GroupService.CurrentGroup?._id!)

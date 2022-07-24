@@ -26,6 +26,10 @@ export interface Group {
             login: string,
             avatar: string
         },
-        text: string
+        text: string,
+        lookingFor: {
+            numberOfUsers: number,
+            gameMod: string
+        }
     }]
 }

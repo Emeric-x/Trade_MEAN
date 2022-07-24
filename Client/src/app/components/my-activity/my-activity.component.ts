@@ -12,8 +12,9 @@ export class MyActivityComponent implements OnInit {
   MyPosts: Post[] | undefined 
   MyNormalPosts: any = []  // set to any bc type Post[] = problems xd
   MyRedyPosts: any = []
-  UserAccepted: boolean = false
-  RedyUser: any
+  UsersAccepted: boolean = false
+  RedyUsers: any = []
+  ChatMessages: any = []
 
   constructor(private PostService: PostService, private AuthService: AuthService) { }
 
@@ -38,6 +39,15 @@ export class MyActivityComponent implements OnInit {
       }else{
         this.MyRedyPosts.push(post)
       }
+    });
+  }
+
+  RedyUserAccepted(sRedyUser: any, sPost: Post){
+    this.RedyUsers.push(sRedyUser)
+    sPost.lookingFor.numberOfUsers--
+    
+    sPost.redy?.forEach((el, index) => {
+      if(el.user.user_id === sRedyUser.user_id) { sPost.redy?.splice(index, 1) }
     });
   }
 }
