@@ -23,4 +23,8 @@ export class AuthService {
   NewUserGroup(sGroup: Group): Promise<any>{
     return this.ApiService.AddUserGroup(this.LoggedUserData!._id!, sGroup).toPromise()
   }
+
+  UpdateUserMatch(sUser_id: string, sMatch_id: string): Promise<any>{
+    return this.ApiService.UpdateUserMatch(sUser_id, sMatch_id).toPromise()
+  }
 }

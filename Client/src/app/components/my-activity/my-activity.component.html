@@ -3,26 +3,26 @@
 
 <br>
 
-<div>
-    <h1>Your normal Posts</h1>
-    <div *ngIf="this.MyNormalPosts !== null; else NoNormalPosts">
-        <div *ngFor="let post of this.MyNormalPosts">
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header">{{ post.author.login }}</div>
-                <div class="card-body">
-                    <h5 class="card-title">Dark card title</h5>
-                    <p class="card-text">{{ post.text }}</p>
+<div *ngIf="!this.AuthService.LoggedUserData!.match; else MatchStarted">
+    <div>
+        <h1>Your normal Posts</h1>
+        <div *ngIf="this.MyNormalPosts !== null; else NoNormalPosts">
+            <div *ngFor="let post of this.MyNormalPosts">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card-header">{{ post.author.login }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Dark card title</h5>
+                        <p class="card-text">{{ post.text }}</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <ng-template #NoNormalPosts>You have no normal posts.</ng-template>
     </div>
-    <ng-template #NoNormalPosts>You have no normal posts.</ng-template>
-</div>
 
-<br>
+    <br>
 
-<div>
-    <div *ngIf="!this.UsersAccepted; else RedyAccepted">
+    <div>
         <h1>Your Redy Posts</h1>
         <div *ngIf="this.MyRedyPosts !== null; else NoRedyPosts">
             <div *ngFor="let post of this.MyRedyPosts">
@@ -35,7 +35,7 @@
                     <div class="card-footer">
                         <button type="button" data-bs-toggle="modal" data-bs-target="#modalCheckRedyUsers" data-bs-whatever="@mdo">Check Redy users</button>
 
-                        <div class="modal fade" id="modalCheckRedyUsers" tabindex="-1" aria-labelledby="modalCheckRedyUsersLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalCheckRedyUsers" data-backdrop="static" tabindex="-1" aria-labelledby="modalCheckRedyUsersLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -60,6 +60,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
+                                        <button type="button" data-bs-dismiss="modal" *ngIf="this.MatchReady" (click)="this.MatchStart = true; this.NewChat()">Start</button>
                                         <button type="button" data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
@@ -71,12 +72,27 @@
         </div>
         <ng-template #NoRedyPosts>You have no Redy posts.</ng-template>
     </div>
-    <ng-template #RedyAccepted>
-        <h1>Match Accepted</h1>
-        <!--
-            Create a small chat
+</div>
+<ng-template #MatchStarted>
+    <h1>Match !</h1>
+    <!--
+        Create a small chat
 First option: Show the pseudos (steam, epic, psn, etc)
 Second option: Make a call
-        -->
-    </ng-template>
-</div>
+    -->
+    <div *ngIf="this.ChatService.Chat?.messages !== null">
+        <div *ngFor="let message of this.ChatService.Chat!.messages">
+            <p>{{ message.author.firstname }}</p>
+            <p>{{ message.text }}</p>
+        </div>
+    </div>
+
+    <br>
+
+    <input type="text" #messageText>
+    <button (click)="SendMessage(messageText.value)">Send</button>
+
+    <br>
+
+
+</ng-template>

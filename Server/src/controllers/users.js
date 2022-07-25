@@ -70,6 +70,25 @@ exports.UpdateUserGroups = async(req, res) => {
     }
 }
 
+exports.UpdateUserMatch = async(req, res) => {
+    try {
+        let user = await User.findById(req.body.user_id)
+
+        if (!user) {
+            res.status(404).json({ msg: 'No matching user' })
+        } else {
+            user.match = req.body.match_id
+
+            user = await User.findOneAndUpdate({ _id: req.body.user_id }, user, { new: true })
+
+            res.send(true)
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+}
+
 exports.GetUserById = async(req, res) => {
     try {
         const user = await User.findById(req.params.id)

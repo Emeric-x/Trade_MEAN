@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Chat } from '../interfaces/chat';
 import { Group } from '../interfaces/group';
 import { Post } from '../interfaces/post';
 import { User } from '../interfaces/user';
@@ -41,6 +42,10 @@ export class ApiService {
     return this.http.get(`http://localhost:3000/groups/${sGroup_id}`)
   }
 
+  GetChatById(sChat_id: string){
+    return this.http.get(`http://localhost:3000/chats/${sChat_id}`)
+  }
+
   GetGroupByTopicsNames(sGroup: any){
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(sGroup);
@@ -49,6 +54,16 @@ export class ApiService {
 
   GetPostsByAuthorId(sAuthor_id: string){
     return this.http.get(`http://localhost:3000/posts/myPosts/${sAuthor_id}`)
+  }
+
+  UpdateUserMatch(sUser_id: string, sMatch_id: string){
+    const jsonData = {
+      "user_id": sUser_id,
+      "match_id": sMatch_id
+    }
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify(jsonData);
+    return this.http.put(`http://localhost:3000/users/match`, body, {'headers':headers})
   }
 
   PostUser(sNewUser: User){
@@ -98,5 +113,20 @@ export class ApiService {
       group_id: sGroup_id
     });
     return this.http.post(`http://localhost:3000/posts`, body, {'headers':headers})
+  }
+
+  PostChat(sChat: Chat){
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify(sChat);
+    return this.http.post(`http://localhost:3000/chats`, body, {'headers':headers})
+  }
+
+  PostChatMessage(sMessage: string, sChat_id: string){
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify({
+      chat_id: sChat_id,
+      message: sMessage,
+    });
+    return this.http.post(`http://localhost:3000/chats/messages`, body, {'headers':headers})
   }
 }

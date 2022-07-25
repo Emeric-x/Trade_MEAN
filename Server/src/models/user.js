@@ -23,7 +23,8 @@ const UserSchema = mongoose.Schema({
                 logo: { type: String, require: true }
             }
         }
-    }]
+    }],
+    match: { type: mongoose.Types.ObjectId, required: false }
 })
 
 module.exports = mongoose.model('User', UserSchema)

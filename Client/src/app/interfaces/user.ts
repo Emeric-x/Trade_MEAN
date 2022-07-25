@@ -21,5 +21,6 @@ export interface User {
                 logo: string
             }
         }
-    }]
+    }],
+    match?: string
 }

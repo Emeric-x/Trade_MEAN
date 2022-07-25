@@ -31,6 +31,24 @@ exports.PostChat = async(req, res) => {
     }
 }
 
+exports.PostMessage = async(req, res) => {
+    try {
+        let chat = await Chat.findById(req.body.chat_id)
+        if (!chat) {
+            res.status(404).json({ msg: 'No matching chat' })
+        } else {
+            chat.messages.push(req.body.message)
+
+            chat = await Chat.findOneAndUpdate({ _id: req.body.chat_id }, chat, { new: true })
+
+            res.send(true)
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+}
+
 exports.GetChatById = async(req, res) => {
     try {
         const chat = await Chat.findById(req.params.id)
